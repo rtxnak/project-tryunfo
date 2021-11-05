@@ -10,7 +10,7 @@ class Card extends React.Component {
       cardAttr2,
       cardAttr3,
       cardRare,
-      cardTrunfo
+      cardTrunfo,
     } = this.props;
 
     return (
@@ -27,4 +27,16 @@ class Card extends React.Component {
     );
   }
 }
+
+Card.propTypes = {
+  cardName: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.number.isRequired,
+  cardAttr2: PropTypes.number.isRequired,
+  cardAttr3: PropTypes.number.isRequired,
+  cardImage: PropTypes.string.isRequired,
+  cardRare: PropTypes.string.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
+};
+
 export default Card;
