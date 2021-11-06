@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Form.css';
 
 class Form extends React.Component {
   render() {
@@ -26,6 +27,7 @@ class Form extends React.Component {
             id="name-input"
             data-testid="name-input"
             type="text"
+            name="cardName"
             value={ cardName }
             onChange={ onInputChange }
           />
@@ -36,6 +38,7 @@ class Form extends React.Component {
             id="description-input"
             data-testid="description-input"
             type="text"
+            name="description"
             value={ cardDescription }
             onChange={ onInputChange }
           />
@@ -46,6 +49,7 @@ class Form extends React.Component {
             id="attr1-input"
             data-testid="attr1-input"
             type="number"
+            name="attr1"
             value={ cardAttr1 }
             onChange={ onInputChange }
           />
@@ -56,6 +60,7 @@ class Form extends React.Component {
             id="attr2-input"
             data-testid="attr2-input"
             type="number"
+            name="attr2"
             value={ cardAttr2 }
             onChange={ onInputChange }
           />
@@ -66,16 +71,18 @@ class Form extends React.Component {
             id="attr3-input"
             data-testid="attr3-input"
             type="number"
+            name="attr3"
             value={ cardAttr3 }
             onChange={ onInputChange }
           />
         </label>
         <label htmlFor="image-input">
-          Atributo3:
+          Imagem:
           <input
             id="image-input"
             data-testid="image-input"
             type="text"
+            name="image"
             value={ cardImage }
             onChange={ onInputChange }
           />
@@ -86,6 +93,7 @@ class Form extends React.Component {
             id="rare-input"
             data-testid="rare-input"
             type="text"
+            name="rarity"
             value={ cardRare }
             onChange={ onInputChange }
           >
