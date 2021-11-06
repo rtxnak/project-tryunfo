@@ -1,0 +1,10 @@
+span {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+img {
+  display: block;
+  margin: 15px;
+}
