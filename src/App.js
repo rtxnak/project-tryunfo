@@ -15,17 +15,59 @@ class App extends React.Component {
       cardAttr3: 0,
       cardRare: '',
       cardTrunfo: false,
+      isSaveButtonDisabled: true,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.validationOnSaveButton = this.validationOnSaveButton.bind(this);
   }
 
   onInputChange({ target }) {
     const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const valueInNumber = (target.type === 'number') ? parseInt(target.value, 10)
+      : target.value;
+    const value = target.type === 'checkbox' ? target.checked : valueInNumber;
 
     this.setState({
       [name]: value,
+    }, () => {
+      this.validationOnSaveButton();
+      // console.log(typeof value);
+    });
+  }
+
+  // Por algum motivo, quando utilizado somente o target.value, o valor é transferido como string.
+  // Utilizado parseInt() para conversão em Number
+
+  validationOnSaveButton() {
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
+
+    const maxOfAttribute = 90;
+    const maxOfAttributeSum = 210;
+
+    const formInformationCheck = [
+      !cardName,
+      !cardDescription,
+      !cardImage,
+      !cardRare,
+      cardAttr1 < 0 || cardAttr1 > maxOfAttribute,
+      cardAttr2 < 0 || cardAttr2 > maxOfAttribute,
+      cardAttr3 < 0 || cardAttr3 > maxOfAttribute,
+      cardAttr1
+      + cardAttr2
+      + cardAttr3 > maxOfAttributeSum,
+    ];
+    const validateResult = formInformationCheck.every((result) => result !== true);
+    this.setState({
+      isSaveButtonDisabled: !validateResult,
     });
   }
 
@@ -34,6 +76,7 @@ class App extends React.Component {
       <div>
         <h1>Tryunfo</h1>
         <Form
+          { ...this.state }
           onInputChange={ this.onInputChange }
         />
         <Card
