@@ -16,10 +16,12 @@ class App extends React.Component {
       cardRare: '',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      cardsDeck: [],
     };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.validationOnSaveButton = this.validationOnSaveButton.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
   }
 
   onInputChange({ target }) {
@@ -38,6 +40,41 @@ class App extends React.Component {
 
   // Por algum motivo, quando utilizado somente o target.value, o valor é transferido como string.
   // Utilizado parseInt() para conversão em Number
+
+  onSaveButtonClick(event) {
+    event.preventDefault();
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
+
+    const newCard = {
+      cardName,
+      cardImage,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+    };
+
+    this.setState((prevState) => ({
+      cardName: '',
+      cardImage: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardRare: '',
+      cardTrunfo: false,
+      cardsDeck: [...prevState.cardsDeck, newCard],
+    }));
+  }
 
   validationOnSaveButton() {
     const {
@@ -78,6 +115,7 @@ class App extends React.Component {
         <Form
           { ...this.state }
           onInputChange={ this.onInputChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           { ...this.state }
