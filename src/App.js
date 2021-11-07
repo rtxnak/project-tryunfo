@@ -15,6 +15,7 @@ class App extends React.Component {
       cardAttr3: 0,
       cardRare: '',
       cardTrunfo: false,
+      hasTrunfo: false,
       isSaveButtonDisabled: true,
       cardsDeck: [],
     };
@@ -51,6 +52,7 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardTrunfo,
     } = this.state;
 
     const newCard = {
@@ -74,6 +76,8 @@ class App extends React.Component {
       cardTrunfo: false,
       cardsDeck: [...prevState.cardsDeck, newCard],
     }));
+
+    if (cardTrunfo) this.setState({ hasTrunfo: true });
   }
 
   validationOnSaveButton() {
