@@ -9,15 +9,16 @@ class CardList extends React.Component {
       removeCard,
       cardFilterName,
       cardRarefilter,
+      cardTrunfoFilter,
     } = this.props;
     return (
       <div>
         {
           cardsDeck
-            .filter(({ cardName, cardRare }) => {
+            .filter(({ cardName, cardRare, cardTrunfo }) => {
               const cardsFiltered = cardName.includes(cardFilterName)
               && (cardRarefilter === 'todas' ? true : cardRare === cardRarefilter);
-              return cardsFiltered;
+              return cardTrunfoFilter ? cardTrunfo : cardsFiltered;
             })
             .map((card, id) => (
               <div key={ card.cardName }>
@@ -45,6 +46,7 @@ CardList.propTypes = {
   removeCard: PropTypes.func.isRequired,
   cardFilterName: PropTypes.string.isRequired,
   cardRarefilter: PropTypes.string.isRequired,
+  cardTrunfoFilter: PropTypes.bool.isRequired,
 };
 
 export default CardList;

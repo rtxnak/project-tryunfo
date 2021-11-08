@@ -7,6 +7,7 @@ class Filters extends React.Component {
       onInputChange,
       cardFilterName,
       cardRarefilter,
+      cardTrunfoFilter,
     } = this.props;
 
     return (
@@ -21,6 +22,7 @@ class Filters extends React.Component {
             placeholder="Nome da carta"
             value={ cardFilterName }
             onChange={ onInputChange }
+            disabled={ cardTrunfoFilter }
           />
         </label>
 
@@ -33,13 +35,27 @@ class Filters extends React.Component {
             name="cardRarefilter"
             value={ cardRarefilter }
             onChange={ onInputChange }
+            disabled={ cardTrunfoFilter }
           >
-            <option name="todas" value="todas" selected>Todas</option>
+            <option name="todas" value="todas">Todas</option>
             <option name="normal" value="normal">Normal</option>
             <option name="raro" value="raro">Raro</option>
             <option name="muito-raro" value="muito raro">Muito Raro</option>
           </select>
         </label>
+
+        <label htmlFor="trunfo-filter">
+          Carta Super Trunfo
+          <input
+            id="trunfo-filter"
+            data-testid="trunfo-filter"
+            type="checkbox"
+            name="cardTrunfoFilter"
+            checked={ cardTrunfoFilter }
+            onChange={ onInputChange }
+          />
+        </label>
+
       </div>
     );
   }
@@ -49,6 +65,7 @@ Filters.propTypes = {
   cardFilterName: PropTypes.string.isRequired,
   cardRarefilter: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
+  cardTrunfoFilter: PropTypes.bool.isRequired,
 };
 
 export default Filters;

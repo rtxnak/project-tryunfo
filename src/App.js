@@ -21,7 +21,8 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       cardsDeck: [],
       cardFilterName: '',
-      cardRarefilter: 'todos',
+      cardRarefilter: 'todas',
+      cardTrunfoFilter: false,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -134,6 +135,7 @@ class App extends React.Component {
       cardsDeck,
       cardFilterName,
       cardRarefilter,
+      cardTrunfoFilter,
     } = this.state;
 
     return (
@@ -156,6 +158,7 @@ class App extends React.Component {
           removeCard={ this.removeCard }
           cardFilterName={ cardFilterName }
           cardRarefilter={ cardRarefilter }
+          cardTrunfoFilter={ cardTrunfoFilter }
         />
       </div>
     );
