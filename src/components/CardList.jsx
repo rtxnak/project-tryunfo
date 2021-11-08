@@ -4,15 +4,19 @@ import Card from './Card';
 
 class CardList extends React.Component {
   render() {
-    const { cardsDeck } = this.props;
-    const { removeCard } = this.props;
-    const { cardFilterName } = this.props;
+    const {
+      cardsDeck,
+      removeCard,
+      cardFilterName,
+      cardRarefilter,
+    } = this.props;
     return (
       <div>
         {
           cardsDeck
-            .filter(({ cardName }) => {
-              const cardsFiltered = cardName.includes(cardFilterName);
+            .filter(({ cardName, cardRare }) => {
+              const cardsFiltered = cardName.includes(cardFilterName)
+              && (cardRarefilter === 'todas' ? true : cardRare === cardRarefilter);
               return cardsFiltered;
             })
             .map((card, id) => (
@@ -40,6 +44,7 @@ CardList.propTypes = {
   cardsDeck: PropTypes.arrayOf(PropTypes.object).isRequired,
   removeCard: PropTypes.func.isRequired,
   cardFilterName: PropTypes.string.isRequired,
+  cardRarefilter: PropTypes.string.isRequired,
 };
 
 export default CardList;
