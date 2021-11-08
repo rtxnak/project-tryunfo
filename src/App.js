@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import CardList from './components/CardList';
+import Filters from './components/CardListFilters';
 
 class App extends React.Component {
   constructor() {
@@ -19,6 +20,7 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       cardsDeck: [],
+      cardFilterName: '',
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -128,6 +130,8 @@ class App extends React.Component {
 
   render() {
     const { cardsDeck } = this.state;
+    const { cardFilterName } = this.state;
+
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -139,9 +143,14 @@ class App extends React.Component {
         <Card
           { ...this.state }
         />
+        <Filters
+          onInputChange={ this.onInputChange }
+          cardFilterName={ cardFilterName }
+        />
         <CardList
           cardsDeck={ cardsDeck }
           removeCard={ this.removeCard }
+          cardFilterName={ cardFilterName }
         />
       </div>
     );
