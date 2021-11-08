@@ -24,6 +24,7 @@ class App extends React.Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.validationOnSaveButton = this.validationOnSaveButton.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.removeCard = this.removeCard.bind(this);
   }
 
   onInputChange({ target }) {
@@ -64,6 +65,7 @@ class App extends React.Component {
       cardAttr2,
       cardAttr3,
       cardRare,
+      cardTrunfo,
     };
 
     this.setState((prevState) => ({
@@ -113,6 +115,17 @@ class App extends React.Component {
     });
   }
 
+  removeCard({ target }) {
+    const { id } = target;
+    const { cardsDeck } = this.state;
+    const card = cardsDeck[id];
+    // console.log(card);
+    if (card.cardTrunfo) {
+      this.setState({ hasTrunfo: false });
+    }
+    target.parentNode.remove();
+  }
+
   render() {
     const { cardsDeck } = this.state;
     return (
@@ -128,6 +141,7 @@ class App extends React.Component {
         />
         <CardList
           cardsDeck={ cardsDeck }
+          removeCard={ this.removeCard }
         />
       </div>
     );
